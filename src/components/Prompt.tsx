@@ -31,20 +31,26 @@ export default function Prompt({ className }: DefaultProps) {
   const onSubmit: Submit = async (e) => {
     setIsLoading(true);
 
-    const res = await fetch("/api/prompt", {
-      method: "POST",
-      body: JSON.stringify({
-        text: filter.text.trim(),
-      }),
-    });
+    try {
+      const res = await fetch("/api/prompt", {
+        method: "POST",
+        body: JSON.stringify({
+          text: filter.text.trim(),
+        }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (res.ok) {
-      setChoices(data?.choices);
-      setError(null);
-    } else {
-      setError(data.message);
+      if (res.ok) {
+        setChoices(data?.choices);
+        setError(null);
+      } else {
+        setError(data.message);
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setError("Ошибка при выполнении запроса");
+      }
     }
 
     setIsLoading(false);
