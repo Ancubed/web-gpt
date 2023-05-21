@@ -3,20 +3,28 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 14, 165, 233;
+  --background-end-rgb: 99, 102, 241;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: -webkit-fill-available; /* We have to fix html height */
 }
 
 body {
+  height: 100vh;
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
